@@ -29,7 +29,7 @@ $(function() {
          it('each feed has url which is be defined', function() {
             for (var i = 0; i < allFeeds.length; i++) {
                 expect(allFeeds[i].url).toBeDefined();
-                expect(allFeeds[i].url).not.toBe(undefined);
+                expect(allFeeds[i].url).not.toBe(null);
             }
         });
 
@@ -38,7 +38,7 @@ $(function() {
          it('each feed has name which is be defined', function() {
             for (var i = 0; i < allFeeds.length; i++) {
                 expect(allFeeds[i].name).toBeDefined();
-                expect(allFeeds[i].name).not.toBe(undefined);
+                expect(allFeeds[i].name).not.toBe(null);
             }
         });
     });
@@ -78,14 +78,11 @@ $(function() {
          */
 
         beforeEach(function(done) {
-            loadFeed(0, function() {
-                done();
-            });
+            loadFeed(0, done);
         });
 
-        it('loadFeed() is working well', function(done) {
+        it('loadFeed() is working well', function() {
             expect($(".feed").find(".entry").length >= 1).toBeTruthy();
-            done();
         });
 
     });
@@ -101,16 +98,13 @@ $(function() {
          beforeEach(function(done) {
             loadFeed(0, function() {
                 initialFeed = $( "div.feed" ).html();
-                loadFeed(1, function() {
-                    done();
-                });
+                loadFeed(1, done);
             });
         });
 
-         it('Feed Selection has been changed', function(done) {
+         it('Feed Selection has been changed', function() {
             newFeed = $( "div.feed" ).html();
             expect(newFeed).not.toBe(initialFeed);
-            done();
         });
 
         afterEach(function() {
